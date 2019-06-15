@@ -32,7 +32,7 @@ $(document).ready(function() {
     "./assets/images/utahjazz.png",
     "./assets/images/washingtonwizards.png"
   ];
-  var team_names = ["atlantahawks", "bostonceltics", "brooklynnets","char","chic","cle","dallas","denver","detroit","golden","hous","indiana","clippers","losangeleslakers","memphisgrizzlies","miami","milwaukeebucks","minnesotatimberwolves","neworleanspelicans","newyorkknicks","okcthunder","orlandomagic","philadelphia","pheonix","portland","sacremento","sanantoniospurs","torontoraptors","utah","washington"];
+  var team_names = ["atlantahawks", "bostonceltics", "brooklynnets","char","chic","cle","dallas","denver","detroit","gsw","hous","indiana","laclippers","lal","memphisgrizzlies","miami","milwaukeebucks","minnesotatimberwolves","neworleanspelicans","newyorkknicks","okcthunder","orlandomagic","philadelphia","pheonix","portland","sacremento","sanantoniospurs","torontoraptors","utah","washington"];
   for (i in logos) {
     var logo ="<img src=" +logos[i] +" class='png'" +"data-name=" +team_names[i] +" width='100px'" +">";
     $("#logo-holder").append(logo);
@@ -59,7 +59,7 @@ $(document).ready(function() {
             $("#roster-holder").append(player);
             //console.log(response[i].name)
         }
-        $(document).on("click", ".player", function(e) {
+        $(document).on("click", ".player", function() {
             $("#roster-holder").hide()
             player_id = $(this).data("id")
             getPlayerCard(player_id, team.substring(0,3))
@@ -76,6 +76,7 @@ $(document).ready(function() {
           url: queryURL,
           method: "GET"
       }).then(function(response){
+        $("#back-btn").show()
 
           console.log(player_id)
         $("#player-card").append("g: "+ response[player_id].games_played + "<br>")
@@ -90,7 +91,8 @@ $(document).ready(function() {
 
       $(document).on("click","#back-btn",function(){
         $("#back-btn").hide()
-        getPlayerRoster()
+        $("#roster-holder").show()
+        
       })
       
   }
