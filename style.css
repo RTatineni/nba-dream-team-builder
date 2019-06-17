@@ -5,8 +5,8 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    overflow: auto
   }
-   } 
 
 .teambox{
     background-color:rgb(34, 34, 34);
@@ -16,10 +16,12 @@ body {
 .teamphoto{
     width: 75px;
     height: 75px;
-   
-}
+  
+    }
+
 .nav-wrapper{
-    background-color:orangered
+    background-color:orangered;
+    font-family: 'Alfa Slab One', cursive;
 }
 
   main {
@@ -27,4 +29,22 @@ body {
   }
 .bannertext{
     color: white
+}
+.page-footer{
+position: fixed;
+left: 0;
+bottom: 0;
+width: 100%;
+}
+.page-footer{
+  background-color: orangered;
+color: white;
+text-align: center;
+}
+.shadowbox{
+  background: rgba(255,255,255,0.5);
+}
+.bumper{
+  margin: 100px;
+
 }
