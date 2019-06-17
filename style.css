@@ -1,0 +1,30 @@
+
+body {
+    background-image: url("./images/floor.jpg");
+    background-size: cover;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+   } 
+
+.teambox{
+    background-color:rgb(34, 34, 34);
+    opacity: 0;
+    z-index: 0;
+}
+.teamphoto{
+    width: 75px;
+    height: 75px;
+   
+}
+.nav-wrapper{
+    background-color:orangered
+}
+
+  main {
+    flex: 1 0 auto;
+  }
+.bannertext{
+    color: white
+}
