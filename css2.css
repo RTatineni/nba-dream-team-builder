@@ -1,0 +1,47 @@
+body {
+  background-image: url("https://slack-imgs.com/?c=1&url=https%3A%2F%2Fwallpapercave.com%2Fwp%2FipQZEak.jpg");
+  background-size: cover;
+  /* image-rendering: optimizeQuality; */
+}
+
+.nav-wrapper {
+  background-color: orangered;
+}
+
+.container {
+  width: 70%;
+  background-color: white;
+  /* opacity: 0.6; */
+}
+.card-container {
+  width: 70%;
+}
+
+.highlight {
+  margin-top: 30px;
+}
+
+.card {
+  float: left;
+  width: 23%;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+#card2 {
+}
+
+#card3 {
+}
+
+.page-footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+.page-footer {
+  background-color: orangered;
+  color: white;
+  text-align: center;
+}
