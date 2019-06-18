@@ -9,7 +9,10 @@ body {
   }
 
 #logo-holder{
-  margin: 10%;
+  margin: 0% 10% 0% 10%;
+  padding: 10px;
+  border: 10px;
+  background-color:rgba(255, 255, 255, 0.3);
 }
 
 .nav-wrapper{
@@ -22,7 +25,9 @@ body {
   }
 .bannertext{
     color: white;
-    padding: 10%;
+    text-align:center;
+    margin: 0% 5% 0% 5%
+
 }
 .animate-reveal {
   font: bold 80px;
@@ -129,7 +134,7 @@ text-align: center;
 
 }
 .bumper{
-  margin: 75px;
+  margin: 50px;
 
 }
 .loginbanner{
