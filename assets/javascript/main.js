@@ -1,6 +1,8 @@
 $(document).ready(function() {
   $("#back-btn-card").hide()
   $("#back-btn-roster").hide()
+  $("#add-to-roster-btn").hide()
+
   var logos = [
     "./assets/images/atlantahawks.png",
     "./assets/images/bostonceltics.png",
@@ -34,6 +36,17 @@ $(document).ready(function() {
     "./assets/images/washingtonwizards.png",
     "./assets/images/nbalogo.png"
   ];
+
+  // Global Variables
+  guard_limit = 2;
+  forward_limit = 2;
+  center_limit = 1;
+  guards = 0;
+  forwards = 0;
+  center = 0;
+
+  var dream_roster = []
+
   
   // Loop through the teams and display each team logo on the screen.
   var team_names = ["atlantahawks", "bostonceltics", "brooklynnets","char","chic","cle","dallas","denver","detroit","gsw","hous","indiana","laclippers","lal","memphisgrizzlies","miami","milwaukeebucks","minnesotatimberwolves","neworleanspelicans","newyorkknicks","okcthunder","orlandomagic","philadelphia","pho","portland","sacremento","sana","torontoraptors","utahjazz","washington"];
@@ -53,8 +66,8 @@ $(document).ready(function() {
         $("#back-btn-roster").show()
     
         for(i in response){
-            var player = "<a class='player'" +"data-name='"+response[i].name+"' data-team="+team+" data-id='"+i+"' width='100px'" +">"+response[i].name + "<a><br>"
-            console.log(player);
+            var player = 
+            "<a class='player'" +"data-name='"+response[i].name+"' data-team="+team+" data-id='"+i+"' width='100px'" +">"+response[i].name + "<a><br>"
             $("#roster-holder").append(player);
         }
     });
@@ -72,7 +85,7 @@ $(document).ready(function() {
           method: "GET",
           
       }).then(function(response){
-        console.log(url)
+        console.log(response)
         $("#back-btn-card").show()
         $("#player-card").html("<img src="+url+ " width='300px'><br>")
         $("#player-card").append("g: "+ response[player_id].games_played + "<br>")
@@ -85,27 +98,23 @@ $(document).ready(function() {
         $("#player-card").append("ppg: "+ response[player_id].points_per_game + "<br>")
       })
   }
-// Search Feature
+
+  // gets player player_id with the player-name.
+  function getPlayerPosition(full_name){
+    var queryURL = "https://www.balldontlie.io/api/v1/players/?search="+full_name;
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response){
+     
+      console.log(response.data[0].position)
+    })
+  }
 
 
+  $(document).on("click","#add-to-roster-btn", function(){
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  })
 
   // When user selects a specific logo, call the GetPlayerRoster function. and hide logos
   $(document).on("click", ".png", function() {
@@ -117,7 +126,7 @@ $(document).ready(function() {
   $(document).on("click", ".player", function(e) {
     e.preventDefault()
     var name = $(this).data("name").split(" ")
-    console.log(name)
+    getPlayerPosition($(this).data("name"))
     var team = $(this).data("team")
     var url = 'https://nba-players.herokuapp.com/players/'+name[1]+'/'+name[0];
     $("#player-card").empty()
