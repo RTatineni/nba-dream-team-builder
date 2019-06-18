@@ -8,6 +8,10 @@ body {
     overflow: auto
   }
 
+#brand-logo1 {
+  padding: 0px 20px;
+}
+
 #logo-holder{
   margin: 0% 10% 0% 10%;
   padding: 10px;

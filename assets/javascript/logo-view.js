@@ -78,6 +78,8 @@ $(document).ready(function() {
     });
   }
 
+  $('.modal').modal()
+
   function getPlayerCard(player_id, team,fname,lname){
       var queryURL = "https://nba-players.herokuapp.com/players-stats-teams/"+team;
       $.ajax({
@@ -109,4 +111,6 @@ $(document).ready(function() {
       })
       
   }
+
+  
 });
