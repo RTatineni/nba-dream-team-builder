@@ -1,25 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Nba Fanpage</title>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script> -->
+    <title>Your NBA Dream Team</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    
-    
+
+    <!-- Firebase References -->
+
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+
+
+
 </head>
+
 <body>
     <script src = "./assets/javascript/main.js"></script>
 
+    <!-- // Authentication id and buttons for user Login and Sign Up// -->
+    <div id="app">
+        <input type="email" id="txtEmail" placeholder="Enter email" /> <br />
+        <input type="password" id="txtPassword" placeholder="Enter password" /><br />
+        
+        <button id="btnLogin">Log in</button>
+        <button id="btnSignUp" >Sign Up</button>
+        <button id="btnLogOut" class="hide">Log Out</button>
+        <!-- <button id="withFB">Log In with FaceBook</button>
+        <button id="withGithub">Log In with GitHub</button> -->
+    </div>
+    
 
-    <div id ="logo-holder"></div>
-    <div id= "roster-holder"></div>
+
+    <div id="results"></div>
+
+
+    <!-- // Id for holding team logo // -->
+
+    <div id="logo-holder"></div>
+
+    <!-- //Id for holding team roster // -->
+
+    <div id="roster-holder"></div>
+
+    <!-- //Id for holding player card// -->
     <div id="player-card"></div>
-    <button id ="back-btn-card">Back</button>
-    <button id ="back-btn-roster">Back</button>
+
+    <!-- //Buttons for going back to roster and card// -->
+    <button id="back-btn-card">Back</button>
+    <button id="back-btn-roster">Back</button>
 
 
 </body>
+
 </html>

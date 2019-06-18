@@ -1,4 +1,103 @@
+// Initializing Firebase
+
 $(document).ready(function() {
+
+var firebaseConfig = {
+  apiKey: "AIzaSyDjquF_i-ha4twszQrxG09zFCZWXjEDMsc",
+  authDomain: "nba-dream-team-f5550.firebaseapp.com",
+  databaseURL: "https://nba-dream-team-f5550.firebaseio.com",
+  projectId: "nba-dream-team-f5550",
+  storageBucket: "nba-dream-team-f5550.appspot.com",
+  messagingSenderId: "847958678823",
+  appId: "1:847958678823:web:c9f3e25ddf001643"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+var database = firebase.database();
+
+
+
+//Code for Authorization user to firebase//
+
+// const auth = firebase.auth();
+
+// const promise = auth.signInWithEmailAndPassword(email, pass);
+// auth.createUserWithEmailAndPassword(email, pass);
+
+//method which listens to authentication changes- sign in/out//
+// firebase.auth().onAuthStateChanged()
+
+//Register First time users with username and password//
+
+document.getElementById("btnSignUp").addEventListener('click', function(e) {
+  $("#results").empty();
+
+  console.log("button works");
+  const email = document.getElementById("txtEmail").value;
+  console.log(email);
+// ***Need to validate email*** //
+
+  const pass = document.getElementById("txtPassword").value;
+  console.log(pass);
+  const auth = firebase.auth();
+// ***Need to validate Psw- 6 character length min ***/
+ // Validate length
+
+ if(pass.length < 6) {
+$("#results").html("Password must contain: Minimum 6 characters");
+} 
+ 
+// Create user with email and psw in firebase//
+  firebase.auth().createUserWithEmailAndPassword(email, pass).catch(function(error) {
+  
+    $("#results").html(error.message);
+  
+
+  });
+});
+
+//Sign in returning user with username and password//
+
+document.getElementById("btnLogin").addEventListener('click', e=>{
+  
+  const email = document.getElementById("txtEmail").value;
+  const pass = document.getElementById("txtPassword").value;
+  const auth = firebase.auth();
+  const promise = firebase.auth().signInWithEmailAndPassword(email, pass);
+  
+console.log("Logging in");
+$("#results").html("Loggin in");
+
+
+  promise.catch(e=>{ $("#results").html(e.massage)})
+});
+
+
+ //Acting upon state change (Sign in/Sign out)/
+firebase.auth().onAuthStateChanged(user=>{ 
+  if(user){
+    document.getElementById("btnLogOut").classList.remove('hide')
+    $("#results").html("Welcome Back User!");
+    console.log(user);
+  } else{
+    document.getElementById("btnLogOut").classList.add('hide')
+    $("#results").html("Not Logged In!")
+  }
+})
+
+//Logging out//
+
+document.getElementById("btnLogOut").addEventListener('click', e=>{
+  firebase.auth().signOut();
+ 
+  console.log('logged out');
+  $("#results").html("Logged out");
+
+})
+
+
+
   $("#back-btn-card").hide()
   $("#back-btn-roster").hide()
   var logos = [
