@@ -41,7 +41,6 @@ $(document).ready(function() {
     var logo ="<img src=" +logos[i] +" class='png'" +"data-name=" +team_names[i] +" width='100px'" +">";
     $("#logo-holder").append(logo);
   }
-
 // Inputs: 
     //team: the team name for the player selected
   // Calls the api for acquiring team roster appends each player on the roster to the screen.
@@ -60,7 +59,6 @@ $(document).ready(function() {
         }
     });
   }
-
   // Inputs: 
     //player_id: the id that the player coresponds to in the roster array.
     //team: the team name for the player selected
@@ -76,7 +74,6 @@ $(document).ready(function() {
       }).then(function(response){
         console.log(url)
         $("#back-btn-card").show()
-      
         $("#player-card").html("<img src="+url+ " width='300px'><br>")
         $("#player-card").append("g: "+ response[player_id].games_played + "<br>")
         $("#player-card").append("fg%: "+ response[player_id].field_goal_percentage + "<br>")
@@ -88,6 +85,27 @@ $(document).ready(function() {
         $("#player-card").append("ppg: "+ response[player_id].points_per_game + "<br>")
       })
   }
+// Search Feature
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   // When user selects a specific logo, call the GetPlayerRoster function. and hide logos
   $(document).on("click", ".png", function() {
@@ -124,6 +142,5 @@ $(document).ready(function() {
     $("#player-card").empty()
     
   })
-
 
 });
