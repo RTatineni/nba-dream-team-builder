@@ -3,21 +3,14 @@ body {
     background-image: url("./images/floor.jpg");
     background-size: cover;
     display: flex;
-    min-height: 100vh;
+    min-height: 90vh;
     flex-direction: column;
     overflow: auto
   }
 
-.teambox{
-    background-color:rgba(34, 34, 34, .3);
-    opacity: 0;
-    z-index: 0;
+#logo-holder{
+  margin: 10%;
 }
-.teamphoto{
-    width: 75px;
-    height: 75px;
-  
-    }
 
 .nav-wrapper{
     background-color:orangered;
