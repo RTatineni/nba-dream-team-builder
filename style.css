@@ -1,50 +1,66 @@
-
 body {
-    background-image: url("./images/floor.jpg");
-    background-size: cover;
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-    overflow: auto
-  }
-
-.teambox{
-    background-color:rgb(34, 34, 34);
-    opacity: 0;
-    z-index: 0;
+  background-image: url("./images/floor.jpg");
+  background-size: cover;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  overflow: auto;
 }
-.teamphoto{
-    width: 75px;
-    height: 75px;
-  
-    }
-
-.nav-wrapper{
-    background-color:orangered;
-    font-family: 'Alfa Slab One', cursive;
+.bannertext {
+  color: white;
 }
-
-  main {
-    flex: 1 0 auto;
-  }
-.bannertext{
-    color: white
-}
-.page-footer{
-position: fixed;
-left: 0;
-bottom: 0;
-width: 100%;
-}
-.page-footer{
-  background-color: orangered;
-color: white;
-text-align: center;
-}
-.shadowbox{
-  background: rgba(255,255,255,0.5);
-}
-.bumper{
+.bumper {
   margin: 100px;
+}
+.card {
+  float: left;
+  width: 23%;
+  padding: 20px;
+  margin: 0 auto;
+}
+#card-container {
+  background: rgba(255, 255, 255, 0);
+}
 
+.container {
+  width: 70%;
+  background: rgba(255, 255, 255, 0.23);
+  color: white;
+}
+
+.highlight {
+  margin-top: 30px;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.nav-wrapper {
+  background-color: orangered;
+  font-family: "Alfa Slab One", cursive;
+}
+
+.page-footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+.page-footer {
+  background-color: orangered;
+  color: white;
+  text-align: center;
+}
+.shadowbox {
+  background: rgba(255, 255, 255, 0.5);
+}
+.teambox {
+  background-color: rgb(34, 34, 34);
+  opacity: 0;
+  z-index: 0;
+}
+.teamphoto {
+  width: 75px;
+  height: 75px;
 }
