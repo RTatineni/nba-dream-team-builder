@@ -40,7 +40,7 @@ document.getElementById("btnSignUp").addEventListener('click', function(e) {
 
   const pass = document.getElementById("txtPassword").value;
   console.log(pass);
-  
+  const auth = firebase.auth();
 // ***Need to validate Psw- 6 character length min ***/
  // Validate length
 
@@ -63,7 +63,7 @@ document.getElementById("btnLogin").addEventListener('click', e=>{
   
   const email = document.getElementById("txtEmail").value;
   const pass = document.getElementById("txtPassword").value;
-  
+  const auth = firebase.auth();
   const promise = firebase.auth().signInWithEmailAndPassword(email, pass);
   
 console.log("Logging in");
