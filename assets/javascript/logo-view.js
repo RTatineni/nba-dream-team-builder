@@ -40,8 +40,10 @@ $(document).ready(function() {
   }
 
   $(document).on("click", ".png", function() {
+    $(".bannertext").hide()
     $("#logo-holder").hide();
     $("#roster-holder").empty()
+    console.log(($(this).data("name")))
     getPlayerRoster($(this).data("name"));
     $("#roster-holder").show()
   });
@@ -69,6 +71,7 @@ $(document).ready(function() {
         });
         $(document).on("click","#back-btn-roster",function(){
             $("#back-btn-roster").hide()
+            $(".bannertext").show()
             $("#logo-holder").show()
             $("#roster-holder").hide()
         })
