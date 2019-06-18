@@ -74,21 +74,23 @@ $("#results").html("Loggin in");
 });
 
 
+ //Acting upon state change (Sign in/Sign out)/
+firebase.auth().onAuthStateChanged(user=>{ 
+  if(user){
+    document.getElementById("btnLogOut").classList.remove('hide')
+    $("#results").html("Welcome Back User!");
+    console.log(user);
+  } else{
+    document.getElementById("btnLogOut").classList.add('hide')
+    $("#results").html("Not Logged In!")
+  }
+})
 
 //Logging out//
 
 document.getElementById("btnLogOut").addEventListener('click', e=>{
   firebase.auth().signOut();
-  //Acting upon state change (Sign in/Sign out)//
-
-firebase.auth().onAuthStateChanged(user=>{ 
-  if(user){
-    document.getElementById("btnLogOut").classList.remove('hide')
-  } else{
-    document.getElementById("btnLogOut").classList.add('hide')
-  }
-})
-
+ 
   console.log('logged out');
   $("#results").html("Logged out");
 
