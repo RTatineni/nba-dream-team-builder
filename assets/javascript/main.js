@@ -90,6 +90,9 @@ $(document).ready(function() {
     });
   });
 
+  $('.modal').modal()
+  $('.modal2').modal()
+
   //Acting upon state change (Sign in/Sign out)/
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
@@ -142,7 +145,7 @@ $(document).ready(function() {
     "./assets/images/torontoraptors.png",
     "./assets/images/utahjazz.png",
     "./assets/images/washingtonwizards.png",
-    "./assets/images/nbalogo.png"
+    
   ];
 
   // Loop through the teams and display each team logo on the screen.
@@ -360,6 +363,7 @@ $(document).ready(function() {
   // When user selects a specific logo, call the GetPlayerRoster function. and hide logos
   $(document).on("click", ".png", function() {
     $("#logo-holder").hide();
+    $(".bannertext").hide()
     getPlayerRoster($(this).data("name"));
   });
 
@@ -386,6 +390,7 @@ $(document).ready(function() {
   $(document).on("click", "#back-btn-roster", function(e) {
     e.preventDefault();
     $("#back-btn-roster").hide();
+    $(".bannertext").show()
     $("#logo-holder").show();
     $("#roster-holder").empty();
   });

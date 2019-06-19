@@ -5,62 +5,110 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Nba Fanpage</title>
-    <title>Your NBA Dream Team</title>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="style.css">
 
-    <!-- Firebase References -->
-
+    <!-- Compiled and minified JavaScript -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One&display=swap" rel="stylesheet">
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
 
 
 
+    <title>Basketball</title>
 </head>
 
 <body>
-    <div id="logo-holder"></div>
+
+    <nav>
+        <div class="nav-wrapper">
+            <a href="index.html" class="brand-logo hoverable" id="brand-logo1"><i
+                    class="material-icons">assignment</i>NBA Player Database</a>
+            <ul class="right hide-on-med-and-down">
+                <li><a class="waves-effect waves-light btn modal-trigger" href="#modal1"> Log In</a></li>
+                <li><a class="waves-effect waves-light btn modal-trigger" href="#modal2"> Search</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div>
+        <h1 class="center bannertext animate-reveal animate-first">Welcome to our NBA Player Database.
+            Choose the ultimate team and build your dream starting lineup below.</h1>
+        <h1 class="center bannertext2 animate-reveal animate-first"> The 2017-2018 Roster
+    </div>
+    <br>
+    <div id="logo-holder" class="center-align"></div>
     <div id="roster-holder"></div>
-    <div id="player-card"></div>
-
-
-
+    <div id="player-card" class="center-align"></div>
     <button id="back-btn-card">Back</button>
     <button id="back-btn-roster">Back</button>
-    <button id="back-btn-search">Back</button>
-    <button id="add-to-roster-btn">Add to Dream Team</button>
-    <br>
 
-    <!-- // Authentication id and buttons for user Login and Sign Up// -->
-    <div id="app">
-        <input type="email" id="txtEmail" placeholder="Enter email" /> <br />
-        <input type="password" id="txtPassword" placeholder="Enter password" /><br />
-        
-        <button id="btnLogin">Log in</button>
-        <button id="btnSignUp" >Sign Up</button>
-        <button id="btnLogOut" class="hide">Log Out</button>
-        <!-- <button id="withFB">Log In with FaceBook</button>
-        <button id="withGithub">Log In with GitHub</button> -->
+    <div id="dream-roster">Your Dream Team</div>
+    <div class="bumper">
+
     </div>
+
+   
     
+    <footer class="page-footer">
+        © 2019 Lara, Raj, Spencer, and Sung
+        <a class="grey-text text-lighten-4 right" href="https://www.nba.com/#/">NBA.com</a>
+        </div>
+        </div>
+    </footer>
 
-    <form id="search-bar">
-        <label for="user-input"></label>
-        <input type="text" id="player-input">
-        <input id="add-player" type="submit" value="Search for a player">
-    </form>
+    <!-- modal stuff -->
+    <!-- <a >Modal</a> -->
 
-    <div id="results"></div>
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <div id="app">
+                <input type="email" id="txtEmail" placeholder="Enter email" /> <br />
+                <input type="password" id="txtPassword" placeholder="Enter password" /><br />
 
-    <div id ="dream-roster">Your Dream Team</div>
+                <button id="btnLogin">Log in</button>
+                <button id="btnSignUp">Sign Up</button>
+                <button id="btnLogOut" class="hide">Log Out</button>
+                <!-- <button id="withFB">Log In with FaceBook</button>
+            <button id="withGithub">Log In with GitHub</button> -->
+            </div>
 
 
 
+            <div id="results"></div>
+
+        </div>
+    </div>
+
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <div id="app">
+                <form id="search-bar">
+                    <label for="user-input"></label>
+                    <input type="text" id="player-input">
+                    <input id="add-player" type="submit" value="Search for a player">
+                </form>
+
+                <div id="results"></div>
+
+                <!-- <div id="dream-roster">Your Dream Team</div> -->
+            </div>
 
 
+
+            <div id="results"></div>
+
+        </div>
+    </div>
+
+
+    <!-- --------- -->
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="./assets/javascript/main.js"></script>
 </body>

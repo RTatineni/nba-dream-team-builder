@@ -207,3 +207,21 @@ p {
   font-size: 20px;
   margin: 5% 15%;
 }
+#back-btn-card{
+margin: 0 40%
+}
+#back-btn-roster{
+margin: 0 40%
+}
+#dream-roster{
+font-family: 'Alfa Slab One', cursive;
+font-size: 40px;
+color: white;
+text-align: center;
+}
+
+#player-card{
+  box-align: center;
+  background-color: rgba(255, 255, 255, 0.3);
+  color:white;
+}
