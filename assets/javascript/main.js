@@ -1,6 +1,7 @@
 $(document).ready(function() {
-  $("#back-btn-card").hide()
-  $("#back-btn-roster").hide()
+  $("#back-btn-card").hide();
+  $("#back-btn-roster").hide();
+  $("#back-btn-search").hide();
   var logos = [
     "./assets/images/atlantahawks.png",
     "./assets/images/bostonceltics.png",
@@ -34,78 +35,179 @@ $(document).ready(function() {
     "./assets/images/washingtonwizards.png",
     "./assets/images/nbalogo.png"
   ];
-  
+
   // Loop through the teams and display each team logo on the screen.
-  var team_names = ["atlantahawks", "bostonceltics", "brooklynnets","char","chic","cle","dallas","denver","detroit","gsw","hous","indiana","laclippers","lal","memphisgrizzlies","miami","milwaukeebucks","minnesotatimberwolves","neworleanspelicans","newyorkknicks","okcthunder","orlandomagic","philadelphia","pho","portland","sacremento","sana","torontoraptors","utahjazz","washington"];
+  var team_names = [
+    "atlantahawks",
+    "bostonceltics",
+    "brooklynnets",
+    "char",
+    "chic",
+    "cle",
+    "dallas",
+    "denver",
+    "detroit",
+    "gsw",
+    "hous",
+    "indiana",
+    "laclippers",
+    "lal",
+    "memphisgrizzlies",
+    "miami",
+    "milwaukeebucks",
+    "minnesotatimberwolves",
+    "neworleanspelicans",
+    "newyorkknicks",
+    "okcthunder",
+    "orlandomagic",
+    "philadelphia",
+    "pho",
+    "portland",
+    "sacremento",
+    "sana",
+    "torontoraptors",
+    "utahjazz",
+    "washington"
+  ];
   for (i in logos) {
-    var logo ="<img src=" +logos[i] +" class='png'" +"data-name=" +team_names[i] +" width='100px'" +">";
+    var logo =
+      "<img src=" +
+      logos[i] +
+      " class='png'" +
+      "data-name=" +
+      team_names[i] +
+      " width='100px'" +
+      ">";
     $("#logo-holder").append(logo);
   }
-// Inputs: 
-    //team: the team name for the player selected
+  // Inputs:
+  //team: the team name for the player selected
   // Calls the api for acquiring team roster appends each player on the roster to the screen.
   function getPlayerRoster(team) {
-    var queryURL ="https://nba-players.herokuapp.com/players-stats-teams/" +team.substring(0, 3);
+    var queryURL =
+      "https://nba-players.herokuapp.com/players-stats-teams/" +
+      team.substring(0, 3);
     $.ajax({
       url: queryURL,
       method: "GET"
     }).then(function(response) {
-        $("#back-btn-roster").show()
-    
-        for(i in response){
-            var player = "<a class='player'" +"data-name='"+response[i].name+"' data-team="+team+" data-id='"+i+"' width='100px'" +">"+response[i].name + "<a><br>"
-            console.log(player);
-            $("#roster-holder").append(player);
-        }
+      $("#back-btn-roster").show();
+
+      for (i in response) {
+        var player =
+          "<a class='player'" +
+          "data-name='" +
+          response[i].name +
+          "' data-team=" +
+          team +
+          " data-id='" +
+          i +
+          "' width='100px'" +
+          ">" +
+          response[i].name +
+          "<a><br>";
+        console.log(player);
+        $("#roster-holder").append(player);
+      }
     });
   }
-  // Inputs: 
-    //player_id: the id that the player coresponds to in the roster array.
-    //team: the team name for the player selected
-    //url : a url for getting the player headshot
+  // Inputs:
+  //player_id: the id that the player coresponds to in the roster array.
+  //team: the team name for the player selected
+  //url : a url for getting the player headshot
   // Calls the api for acquiring stats for a specific player, and appends the stats as well as the picture to the screen.
 
-  function getPlayerCard(player_id, team,url){
-      var queryURL = "https://nba-players.herokuapp.com/players-stats-teams/"+team;
-      $.ajax({
-          url: queryURL,
-          method: "GET",
-          
-      }).then(function(response){
-        console.log(url)
-        $("#back-btn-card").show()
-        $("#player-card").html("<img src="+url+ " width='300px'><br>")
-        $("#player-card").append("g: "+ response[player_id].games_played + "<br>")
-        $("#player-card").append("fg%: "+ response[player_id].field_goal_percentage + "<br>")
-        $("#player-card").append("ft%: "+ response[player_id].free_throw_percentage + "<br>")
-        $("#player-card").append("rpg: "+ response[player_id].rebounds_per_game + "<br>")
-        $("#player-card").append("apg: "+ response[player_id].assists_per_game + "<br>")
-        $("#player-card").append("spg: "+ response[player_id].steals_per_game + "<br>")
-        $("#player-card").append("bpg: "+ response[player_id].blocks_per_game + "<br>")
-        $("#player-card").append("ppg: "+ response[player_id].points_per_game + "<br>")
-      })
+  function getPlayerCard(player_id, team, url) {
+    var queryURL =
+      "https://nba-players.herokuapp.com/players-stats-teams/" + team;
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response) {
+      console.log(url);
+      $("#back-btn-card").show();
+      $("#player-card").html("<img src=" + url + " width='300px'><br>");
+      $("#player-card").append(
+        "g: " + response[player_id].games_played + "<br>"
+      );
+      $("#player-card").append(
+        "fg%: " + response[player_id].field_goal_percentage + "<br>"
+      );
+      $("#player-card").append(
+        "ft%: " + response[player_id].free_throw_percentage + "<br>"
+      );
+      $("#player-card").append(
+        "rpg: " + response[player_id].rebounds_per_game + "<br>"
+      );
+      $("#player-card").append(
+        "apg: " + response[player_id].assists_per_game + "<br>"
+      );
+      $("#player-card").append(
+        "spg: " + response[player_id].steals_per_game + "<br>"
+      );
+      $("#player-card").append(
+        "bpg: " + response[player_id].blocks_per_game + "<br>"
+      );
+      $("#player-card").append(
+        "ppg: " + response[player_id].points_per_game + "<br>"
+      );
+    });
   }
-// Search Feature
+  // Search Featuresteve
 
+  $("#add-player").on("click", function(e) {
+    e.preventDefault();
+    // api call for uset input - player
+    var usersearch = $("#player-input")
+      .val()
+      .trim();
+    var usersearcharray = $("#player-input")
+      .val()
+      .trim()
+      .split(" ");
+    //$("#back-btn-search").show();
+    console.log(usersearcharray);
+    var url =
+      "https://nba-players.herokuapp.com/players/" +
+      usersearcharray[1] +
+      "/" +
+      usersearcharray[0];
+    $.ajax({
+      url: url,
+      method: "GET"
+    }).then(function(response) {
+      console.log(response);
+      $("#logo-holder").hide();
+      $("#back-btn-search").show();
+      $("#player-card").append("<img src=" + url + " width='300px'><br>");
+      var playerstats =
+        "http://nba-players.herokuapp.com/players-stats/" +
+        usersearcharray[1] +
+        "/" +
+        usersearcharray[0];
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      $.ajax({
+        url: playerstats,
+        method: "GET"
+      }).then(function(response) {
+        console.log(response);
+        //$("#back-btn-search").show();
+        // $("#player-card").html("<img src=" + url + " width='300px'><br>");
+        $("#player-card").append("g: " + response.games_played + "<br>");
+        $("#player-card").append(
+          "fg%: " + response.field_goal_percentage + "<br>"
+        );
+        $("#player-card").append(
+          "ft%: " + response.free_throw_percentage + "<br>"
+        );
+        $("#player-card").append("rpg: " + response.rebounds_per_game + "<br>");
+        $("#player-card").append("apg: " + response.assists_per_game + "<br>");
+        $("#player-card").append("spg: " + response.steals_per_game + "<br>");
+        $("#player-card").append("bpg: " + response.blocks_per_game + "<br>");
+        $("#player-card").append("ppg: " + response.points_per_game + "<br>");
+      });
+    });
+  });
 
   // When user selects a specific logo, call the GetPlayerRoster function. and hide logos
   $(document).on("click", ".png", function() {
@@ -115,32 +217,37 @@ $(document).ready(function() {
 
   // When user selects a specific player in roster screen acquire playercard by passing in variables of player and team.
   $(document).on("click", ".player", function(e) {
-    e.preventDefault()
-    var name = $(this).data("name").split(" ")
-    console.log(name)
-    var team = $(this).data("team")
-    var url = 'https://nba-players.herokuapp.com/players/'+name[1]+'/'+name[0];
-    $("#player-card").empty()
-    getPlayerCard($(this).data("id"), team.substring(0,3),url)
-    $("#back-btn-roster").hide()
-    $("#roster-holder").hide()
-
+    e.preventDefault();
+    var name = $(this)
+      .data("name")
+      .split(" ");
+    console.log(name);
+    var team = $(this).data("team");
+    var url =
+      "https://nba-players.herokuapp.com/players/" + name[1] + "/" + name[0];
+    $("#player-card").empty();
+    getPlayerCard($(this).data("id"), team.substring(0, 3), url);
+    $("#back-btn-roster").hide();
+    $("#roster-holder").hide();
   });
-// When user selects back go back to logos by hiding this back button and showing logos
-  $(document).on("click","#back-btn-roster",function(e){
-      e.preventDefault()
-      $("#back-btn-roster").hide()
-      $("#logo-holder").show()
-      $("#roster-holder").empty()
-  })
-// When user slects back go back to roster screen and empty before so that new player can be rendered.
-  $(document).on("click","#back-btn-card",function(e){
-    e.preventDefault()
-    $("#back-btn-card").hide()
-    $("#roster-holder").show()
-    $("#back-btn-roster").show()
-    $("#player-card").empty()
-    
-  })
-
+  // When user selects back go back to logos by hiding this back button and showing logos
+  $(document).on("click", "#back-btn-roster", function(e) {
+    e.preventDefault();
+    $("#back-btn-roster").hide();
+    $("#logo-holder").show();
+    $("#roster-holder").empty();
+  });
+  // When user slects back go back to roster screen and empty before so that new player can be rendered.
+  $(document).on("click", "#back-btn-card", function(e) {
+    e.preventDefault();
+    $("#back-btn-card").hide();
+    $("#roster-holder").show();
+    $("#back-btn-roster").hide();
+    $("#player-card").empty();
+  });
+  $(document).on("click", "#back-btn-search", function(e) {
+    $("#player-card").hide();
+    $("#back-btn-search").hide();
+    $("#logo-holder").show();
+  });
 });
