@@ -1,12 +1,4 @@
 
-body {
-    background-image: url("./images/floor.jpg");
-    background-size: cover;
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-    overflow: auto
-  }
 
 .teambox{
     background-color:rgba(34, 34, 34, .3);
@@ -24,9 +16,6 @@ body {
     font-family: 'Alfa Slab One', cursive;
 }
 
-  main {
-    flex: 1 0 auto;
-  }
 .bannertext{
     color: white
 }
@@ -58,11 +47,7 @@ text-align: center;
   
 }
 
-p{
-  font-size:12px;
-  text-decoration: none;
-  color:#ffffff;
-}
+
 
 .loginpage{
   font-size:1.5em;
