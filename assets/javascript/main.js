@@ -4,15 +4,15 @@ $(document).ready(function() {
   $("#back-btn-card").hide();
   $("#back-btn-roster").hide();
   $("#back-btn-search").hide();
-
+  $("#add-to-roster-btn").hide();
   var firebaseConfig = {
-    apiKey: "AIzaSyDjquF_i-ha4twszQrxG09zFCZWXjEDMsc",
-    authDomain: "nba-dream-team-f5550.firebaseapp.com",
-    databaseURL: "https://nba-dream-team-f5550.firebaseio.com",
-    projectId: "nba-dream-team-f5550",
-    storageBucket: "nba-dream-team-f5550.appspot.com",
-    messagingSenderId: "847958678823",
-    appId: "1:847958678823:web:c9f3e25ddf001643"
+    apiKey: "AIzaSyASNxFpWnUnEbpKox3TQKajO_UH5pyFHS8",
+    authDomain: "nba-page.firebaseapp.com",
+    databaseURL: "https://nba-page.firebaseio.com",
+    projectId: "nba-page",
+    storageBucket: "nba-page.appspot.com",
+    messagingSenderId: "75407839994",
+    appId: "1:75407839994:web:f0498ddbbc807e28"
   };
 
   firebase.initializeApp(firebaseConfig);
@@ -30,17 +30,14 @@ $(document).ready(function() {
   // firebase.auth().onAuthStateChanged()
 
   //Register First time users with username and password//
-
+  var email;
   document.getElementById("btnSignUp").addEventListener("click", function(e) {
     $("#results").empty();
-
-    console.log("button works");
-    const email = document.getElementById("txtEmail").value;
-    console.log(email);
+    email = null;
+    email = document.getElementById("txtEmail").value;
     // ***Need to validate email*** //
 
     const pass = document.getElementById("txtPassword").value;
-    console.log(pass);
     const auth = firebase.auth();
     // ***Need to validate Psw- 6 character length min ***/
     // Validate length
@@ -59,15 +56,34 @@ $(document).ready(function() {
   });
 
   //Sign in returning user with username and password//
-
   document.getElementById("btnLogin").addEventListener("click", e => {
-    const email = document.getElementById("txtEmail").value;
+    email = document.getElementById("txtEmail").value;
     const pass = document.getElementById("txtPassword").value;
     const auth = firebase.auth();
     const promise = firebase.auth().signInWithEmailAndPassword(email, pass);
 
     console.log("Logging in");
     $("#results").html("Loggin in");
+
+    if(email != null){
+      database.ref("/user_rosters/" + email.substring(0,3)).on("child_added", function(childSnapshot) {
+        //console.log(childSnapshot.val().player_name)
+        $("#dream-roster").append("<br>name: "+childSnapshot.val().player_name)
+        $("#dream-roster").append("<br><img src=" + childSnapshot.val().url_link + " width='250px'>");
+        $("#dream-roster").append("<br> games played: "+childSnapshot.val().g );
+        $("#dream-roster").append("<br>fg: "+childSnapshot.val().fg );
+        $("#dream-roster").append("<br>ft: "+childSnapshot.val().ft );
+        $("#dream-roster").append("<br>rpg: "+childSnapshot.val().rpg );
+        $("#dream-roster").append("<br>apg: "+childSnapshot.val().apg );
+        $("#dream-roster").append("<br>spg: "+childSnapshot.val().spg);
+        $("#dream-roster").append("<br>bpg: "+childSnapshot.val().bpg );
+        $("#dream-roster").append("<br>ppg: "+childSnapshot.val().ppg );
+
+
+        //console.log(player_name)
+  
+      })
+    }
 
     promise.catch(e => {
       $("#results").html(e.massage);
@@ -209,6 +225,17 @@ $(document).ready(function() {
   //team: the team name for the player selected
   //url : a url for getting the player headshot
   // Calls the api for acquiring stats for a specific player, and appends the stats as well as the picture to the screen.
+  var g;
+  var fg;
+  var ft;
+  var rpg;
+  var apg;
+  var spg;
+  var bpg;
+  var ppg;
+  var url_link;
+  var position;
+  var player_name;
 
   function getPlayerCard(player_id, team, url) {
     var queryURL =
@@ -217,35 +244,58 @@ $(document).ready(function() {
       url: queryURL,
       method: "GET"
     }).then(function(response) {
-      console.log(url);
+      url_link = url;
+      g = response[player_id].games_played;
+      fg = response[player_id].field_goal_percentage;
+      ft = response[player_id].free_throw_percentage;
+      rpg = response[player_id].rebounds_per_game;
+      apg = response[player_id].assists_per_game;
+      spg = response[player_id].steals_per_game;
+      bpg = response[player_id].blocks_per_game;
+      ppg = response[player_id].points_per_game;
       $("#back-btn-card").show();
+      $("#add-to-roster-btn").show()
       $("#player-card").html("<img src=" + url + " width='300px'><br>");
-      $("#player-card").append(
-        "g: " + response[player_id].games_played + "<br>"
-      );
-      $("#player-card").append(
-        "fg%: " + response[player_id].field_goal_percentage + "<br>"
-      );
-      $("#player-card").append(
-        "ft%: " + response[player_id].free_throw_percentage + "<br>"
-      );
-      $("#player-card").append(
-        "rpg: " + response[player_id].rebounds_per_game + "<br>"
-      );
-      $("#player-card").append(
-        "apg: " + response[player_id].assists_per_game + "<br>"
-      );
-      $("#player-card").append(
-        "spg: " + response[player_id].steals_per_game + "<br>"
-      );
-      $("#player-card").append(
-        "bpg: " + response[player_id].blocks_per_game + "<br>"
-      );
-      $("#player-card").append(
-        "ppg: " + response[player_id].points_per_game + "<br>"
-      );
+      $("#player-card").append("g: " + g + "<br>");
+      $("#player-card").append("fg%: " + fg + "<br>");
+      $("#player-card").append("ft%: " + ft + "<br>");
+      $("#player-card").append("rpg: " + rpg + "<br>");
+      $("#player-card").append("apg: " + apg + "<br>");
+      $("#player-card").append("spg: " + spg + "<br>");
+      $("#player-card").append("bpg: " + bpg + "<br>");
+      $("#player-card").append("ppg: " + ppg + "<br>");
+      
     });
   }
+
+  function getPlayerPosition(name) {
+    var queryURL = "https://www.balldontlie.io/api/v1/players/?search=" + name;
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response) {
+      position = response.data[0].position;
+    });
+  }
+
+
+  $("#add-to-roster-btn").on("click", function(event) {
+    event.preventDefault();
+
+    database.ref("user_rosters/" + email.substring(0, 3)).push({
+      player_name: player_name,
+      position: position,
+      url_link: url_link,
+      g: g,
+      fg: fg,
+      ft: ft,
+      rpg: rpg,
+      apg: apg,
+      spg: spg,
+      bpg: bpg,
+      ppg: ppg
+    });
+  });
   // Search Featuresteve
 
   $("#add-player").on("click", function(e) {
@@ -269,10 +319,10 @@ $(document).ready(function() {
       url: url,
       method: "GET"
     }).then(function(response) {
-      console.log(response);
       $("#logo-holder").hide();
       $("#back-btn-search").show();
       $("#player-card").append("<img src=" + url + " width='300px'><br>");
+      $("#add-to-roster-btn").show()
       var playerstats =
         "http://nba-players.herokuapp.com/players-stats/" +
         usersearcharray[1] +
@@ -283,21 +333,26 @@ $(document).ready(function() {
         url: playerstats,
         method: "GET"
       }).then(function(response) {
-        console.log(response);
         //$("#back-btn-search").show();
         // $("#player-card").html("<img src=" + url + " width='300px'><br>");
-        $("#player-card").append("g: " + response.games_played + "<br>");
-        $("#player-card").append(
-          "fg%: " + response.field_goal_percentage + "<br>"
-        );
-        $("#player-card").append(
-          "ft%: " + response.free_throw_percentage + "<br>"
-        );
-        $("#player-card").append("rpg: " + response.rebounds_per_game + "<br>");
-        $("#player-card").append("apg: " + response.assists_per_game + "<br>");
-        $("#player-card").append("spg: " + response.steals_per_game + "<br>");
-        $("#player-card").append("bpg: " + response.blocks_per_game + "<br>");
-        $("#player-card").append("ppg: " + response.points_per_game + "<br>");
+        url_link = url;
+        player_name = usersearcharray[0] + usersearcharray[1]
+        g = response.games_played;
+        fg = response.field_goal_percentage;
+        ft = response.free_throw_percentage;
+        rpg = response.rebounds_per_game;
+        apg = response.assists_per_game;
+        spg = response.steals_per_game;
+        bpg = response.blocks_per_game;
+        ppg = response.points_per_game;
+        $("#player-card").append("g: " + g + "<br>");
+        $("#player-card").append("fg%: " + fg + "<br>" );
+        $("#player-card").append("ft%: " + ft + "<br>");
+        $("#player-card").append("rpg: " + rpg + "<br>");
+        $("#player-card").append("apg: " + apg + "<br>");
+        $("#player-card").append("spg: " + spg + "<br>");
+        $("#player-card").append("bpg: " + bpg + "<br>");
+        $("#player-card").append("ppg: " + ppg + "<br>");
       });
     });
   });
@@ -311,15 +366,19 @@ $(document).ready(function() {
   // When user selects a specific player in roster screen acquire playercard by passing in variables of player and team.
   $(document).on("click", ".player", function(e) {
     e.preventDefault();
+    $("#add-to-roster-btn").show();
+
     var name = $(this)
       .data("name")
       .split(" ");
-    console.log(name);
+    
     var team = $(this).data("team");
     var url =
       "https://nba-players.herokuapp.com/players/" + name[1] + "/" + name[0];
+    player_name = $(this).data("name");
     $("#player-card").empty();
     getPlayerCard($(this).data("id"), team.substring(0, 3), url);
+    getPlayerPosition($(this).data("name"));
     $("#back-btn-roster").hide();
     $("#roster-holder").hide();
   });
@@ -335,7 +394,7 @@ $(document).ready(function() {
     e.preventDefault();
     $("#back-btn-card").hide();
     $("#roster-holder").show();
-    $("#back-btn-roster").hide();
+    $("#back-btn-roster").show();
     $("#player-card").empty();
   });
   $(document).on("click", "#back-btn-search", function(e) {
