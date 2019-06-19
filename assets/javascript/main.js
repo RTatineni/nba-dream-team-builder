@@ -370,7 +370,7 @@ $(document).ready(function() {
   // When user selects a specific player in roster screen acquire playercard by passing in variables of player and team.
   $(document).on("click", ".player", function(e) {
     e.preventDefault();
-    $("#add-to-roster-btn").show();
+    //$("#add-to-roster-btn").show();
 
     var name = $(this)
       .data("name")
